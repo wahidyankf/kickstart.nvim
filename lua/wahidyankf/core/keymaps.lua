@@ -86,4 +86,4 @@ keymap.set('n', '<bs>cvt', ':tabnew $MYVIMRC<CR>', { desc = '[C]onfig: $MY[V]IMR
 keymap.set('n', '<bs>/', ':nohl<CR>', { desc = 'Clear search highlight' })
 
 -- clear all buffer except current
-keymap.set('n', '<bs>bca', ':w | %bd | e#', { desc = 'Close all display except current one' })
+keymap.set('n', '<bs>bca', ':w | %bd | e#<CR>', { desc = 'Close all display except current one' })

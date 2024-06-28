@@ -1,1 +1,1 @@
-vim.keymap.set('n', '<localleader>rr', ':!deno run %<cr>', { silent = true })
+vim.keymap.set('n', '<localleader>rr', ':split term://deno run %<CR>', { silent = true })

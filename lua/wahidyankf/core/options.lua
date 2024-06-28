@@ -64,5 +64,7 @@ opt.hlsearch = true
 opt.swapfile = false
 
 -- folding
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+opt.foldmethod = 'expr'
+opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+opt.foldlevel = 99
+opt.foldlevelstart = 2
