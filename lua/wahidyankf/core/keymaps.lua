@@ -8,11 +8,14 @@ keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 keymap.set('n', '<leader>=', '<C-a>', { desc = 'Increment number' })
 keymap.set('n', '<leader>-', '<C-x>', { desc = 'Decrement number' })
 
+-- Package
+keymap.set('n', '<bs>cpr', ':Lazy reload ', { desc = '[R]eload' })
+
 -- Diagnostic keymaps
 keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
-keymap.set('n', '<leader>ee', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+keymap.set('n', '<leader>cdp', vim.diagnostic.open_float, { desc = '[P]review in float' })
+keymap.set('n', '<leader>cdq', vim.diagnostic.setloclist, { desc = '[Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -39,10 +42,9 @@ keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window'
 keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- buffer management
-keymap.set('n', '<leader>bw', ':w<CR>', { desc = '[B]uffer: Write current' })
-keymap.set('n', '<localleader>w', ':w<CR>', { desc = '[B]uffer: Write current' }) -- old habbit die hard
-
-keymap.set('n', '<leader>bq', ':q<CR>', { desc = '[B]uffer: Close current' })
+keymap.set('n', '<leader>bw', ':w<CR>', { desc = '[W]rite current' })
+keymap.set('n', '<leader>bq', ':q<CR>', { desc = '[Q]uit current' })
+keymap.set('n', '<leader>bca', ':w | %bd | e#<CR>', { desc = 'Close all buffer except current' })
 
 -- split management
 keymap.set('n', '<bs>sv', ':vsp<CR>', { desc = '[S]plit: current buffer [V]ertically' })
@@ -85,5 +87,5 @@ keymap.set('n', '<bs>cvt', ':tabnew $MYVIMRC<CR>', { desc = '[C]onfig: $MY[V]IMR
 -- clear search
 keymap.set('n', '<bs>/', ':nohl<CR>', { desc = 'Clear search highlight' })
 
--- clear all buffer except current
-keymap.set('n', '<bs>bca', ':w | %bd | e#<CR>', { desc = 'Close all display except current one' })
+-- git
+keymap.set('n', '<bs>gg', ':Git<CR>', { desc = 'Open Console' })

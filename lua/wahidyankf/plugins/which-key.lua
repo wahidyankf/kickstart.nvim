@@ -6,13 +6,29 @@ return { -- Useful plugin to show you pending keybinds.
 
     -- Document existing key chains
     require('which-key').register {
+      ['<leader>b'] = { name = '[B]uffer', _ = 'which_key_ignore' },
+      ['<leader>bc'] = { name = '[C]lose', _ = 'which_key_ignore' },
+
       ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+      ['<leader>cd'] = { name = '[D]iagnostic', _ = 'which_key_ignore' },
+      ['<leader>ch'] = { name = '[H]int', _ = 'which_key_ignore' },
+      ['<leader>cs'] = { name = '[S]ymbol', _ = 'which_key_ignore' },
+
       ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-      ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-      ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-      ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-      ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
-      ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
+      ['<leader>f'] = { name = 'Fuzzy [F]ind', _ = 'which_key_ignore' },
+
+      ['<bs>c'] = { name = '[C]onfig', _ = 'which_key_ignore' },
+      ['<bs>cp'] = { name = '[P]ackage', _ = 'which_key_ignore' },
+      ['<bs>cv'] = { name = '[V]im', _ = 'which_key_ignore' },
+
+      ['<bs>g'] = { name = '[G]it ', _ = 'which_key_ignore' },
+      ['<bs>gb'] = { name = '[B]lame', _ = 'which_key_ignore' },
+      ['<bs>gd'] = { name = '[D]iff', _ = 'which_key_ignore' },
+      ['<bs>ge'] = { name = 'D[e]leted', _ = 'which_key_ignore' },
+      ['<bs>gr'] = { name = '[R]eset', _ = 'which_key_ignore' },
+      ['<bs>gs'] = { name = '[S]tage', _ = 'which_key_ignore' },
+      ['<bs>gu'] = { name = '[U]ndo', _ = 'which_key_ignore' },
+      ['<bs>gv'] = { name = '[V]iew', _ = 'which_key_ignore' },
     }
     -- visual mode
     require('which-key').register({

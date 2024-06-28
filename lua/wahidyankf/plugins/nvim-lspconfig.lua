@@ -79,17 +79,15 @@ return { -- LSP Configuration & Plugins
 
         -- Fuzzy find all the symbols in your current workspace.
         --  Similar to document symbols, except searches over your entire project.
-        map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+        map('<leader>csw', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'View [W]orkspace symbols')
 
         -- Rename the variable under your cursor.
         --  Most Language Servers support renaming across files, etc.
-        map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+        map('<leader>csr', vim.lsp.buf.rename, '[R]ename symbol')
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
         map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-        map('<leader>ei', vim.lsp.buf.code_action, 'Code Action')
-        map('<localleader>ei', vim.lsp.buf.code_action, 'Code Action')
 
         -- Opens a popup that displays documentation about the word under your cursor
         --  See `:help K` for why this keymap.
@@ -133,9 +131,9 @@ return { -- LSP Configuration & Plugins
         --
         -- This may be unwanted, since they displace some of your code
         if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-          map('<leader>th', function()
+          map('<leader>chh', function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-          end, '[T]oggle Inlay [H]ints')
+          end, 'Toggle Inlay [H]ints')
         end
       end,
     })
