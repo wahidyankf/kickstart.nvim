@@ -13,8 +13,8 @@ return { -- Useful plugin to show you pending keybinds.
       ['<leader>cd'] = { name = '[D]iagnostic', _ = 'which_key_ignore' },
       ['<leader>ch'] = { name = '[H]int', _ = 'which_key_ignore' },
       ['<leader>cs'] = { name = '[S]ymbol', _ = 'which_key_ignore' },
+      ['<leader>ct'] = { name = '[T]ype definitions', _ = 'which_key_ignore' },
 
-      ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
       ['<leader>f'] = { name = 'Fuzzy [F]ind', _ = 'which_key_ignore' },
 
       ['<bs>c'] = { name = '[C]onfig', _ = 'which_key_ignore' },

@@ -59,43 +59,43 @@ return { -- LSP Configuration & Plugins
         -- Jump to the definition of the word under your cursor.
         --  This is where a variable was first declared, or where a function is defined, etc.
         --  To jump back, press <C-t>.
-        map_key('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+        map_key('gd', require('telescope.builtin').lsp_definitions, 'LSP: [G]oto [D]efinition')
 
         -- Find references for the word under your cursor.
-        map_key('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+        map_key('gr', require('telescope.builtin').lsp_references, 'LSP: [G]oto [R]eferences')
 
         -- Jump to the implementation of the word under your cursor.
         --  Useful when your language has ways of declaring types without an actual implementation.
-        map_key('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+        map_key('gI', require('telescope.builtin').lsp_implementations, 'LSP: [G]oto [I]mplementation')
 
         -- Jump to the type of the word under your cursor.
         --  Useful when you're not sure what type a variable is and you want to see
         --  the definition of its *type*, not where it was *defined*.
-        map_key('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+        map_key('<leader>ctt', require('telescope.builtin').lsp_type_definitions, 'LSP: Go to [T]ype definition')
 
         -- Fuzzy find all the symbols in your current document.
         --  Symbols are things like variables, functions, types, etc.
-        map_key('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+        map_key('<leader>csd', require('telescope.builtin').lsp_document_symbols, 'LSP: [D]ocument symbols')
 
         -- Fuzzy find all the symbols in your current workspace.
         --  Similar to document symbols, except searches over your entire project.
-        map_key('<leader>csw', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'View [W]orkspace symbols')
+        map_key('<leader>csw', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'LSP: View [W]orkspace symbols')
 
         -- Rename the variable under your cursor.
         --  Most Language Servers support renaming across files, etc.
-        map_key('<leader>csr', vim.lsp.buf.rename, '[R]ename symbol')
+        map_key('<leader>csr', vim.lsp.buf.rename, 'LSP: [R]ename symbol')
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
-        map_key('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+        map_key('<leader>ca', vim.lsp.buf.code_action, 'LSP: Code [A]ctions')
 
         -- Opens a popup that displays documentation about the word under your cursor
         --  See `:help K` for why this keymap.
-        map_key('K', vim.lsp.buf.hover, 'Hover Documentation')
+        map_key('K', vim.lsp.buf.hover, 'LSP: Hover Documentation')
 
         -- WARN: This is not Goto Definition, this is Goto Declaration.
         --  For example, in C this would take you to the header.
-        map_key('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        map_key('gD', vim.lsp.buf.declaration, 'LSP: [G]oto [D]eclaration')
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
@@ -133,7 +133,7 @@ return { -- LSP Configuration & Plugins
         if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
           map_key('<leader>chh', function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-          end, 'Toggle Inlay [H]ints')
+          end, 'LSP: Toggle Inlay [H]ints')
         end
       end,
     })
