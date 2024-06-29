@@ -6,6 +6,7 @@ return {
     -- Set configuration options here
     vim.g['conjure#debug'] = false
     vim.g['conjure#client#clojure#nrepl#eval#print_options#length'] = 2000
+    vim.g['conjure#filetypes'] = { 'clojure', 'fennel', 'racket' }
     vim.g['conjure#filetype#clojure'] = 'conjure.client.clojure.nrepl'
     vim.g['conjure#filetype#fennel'] = 'conjure.client.fennel.aniseed'
     vim.g['conjure#eval#comment_prefix'] = ';;'
