@@ -26,6 +26,8 @@ return { -- Useful plugin to show you pending keybinds.
       ['<leader>gu'] = { name = '[U]ndo', _ = 'which_key_ignore' },
       ['<leader>gv'] = { name = '[V]iew', _ = 'which_key_ignore' },
 
+      ['<leader>q'] = { name = '[Q]uit', _ = 'which_key_ignore' },
+
       ['<leader>s'] = { name = '[S]plit', _ = 'which_key_ignore' },
       ['<leader>ss'] = { name = '[S]ize', _ = 'which_key_ignore' },
 
@@ -36,8 +38,8 @@ return { -- Useful plugin to show you pending keybinds.
       ['<localleader>r'] = { name = '[R]un', _ = 'which_key_ignore' },
 
       ['<bs>c'] = { name = '[C]onfig', _ = 'which_key_ignore' },
-      ['<bs>cp'] = { name = '[P]ackage', _ = 'which_key_ignore' },
       ['<bs>cv'] = { name = '[V]im', _ = 'which_key_ignore' },
+      ['<bs>p'] = { name = '[P]ackage Manager', _ = 'which_key_ignore' },
     }
     -- visual mode
     require('which-key').register({

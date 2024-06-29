@@ -3,13 +3,16 @@
 
 local keymap = vim.keymap
 
-keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+-- quit vim
+keymap.set('n', '<leader>qq', ':q<CR>', { desc = 'quit' })
+keymap.set('n', '<leader>qa', ':qa<CR>', { desc = 'quit' })
 
+-- number operations
 keymap.set('n', '<leader>=', '<C-a>', { desc = 'Increment number' })
 keymap.set('n', '<leader>-', '<C-x>', { desc = 'Decrement number' })
 
 -- Package
-keymap.set('n', '<bs>cpr', ':Lazy reload ', { desc = '[R]eload' })
+keymap.set('n', '<bs>pr', ':Lazy reload ', { desc = '[R]eload package' })
 
 -- Diagnostic keymaps
 keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
@@ -76,6 +79,7 @@ keymap.set('n', '<bs>cvt', ':tabnew $MYVIMRC<CR>', { desc = '[C]onfig: $MY[V]IMR
 
 -- clear search
 keymap.set('n', '<bs>/', ':nohl<CR>', { desc = 'Clear search highlight' })
+keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Explore
 keymap.set('n', '<leader>xn', ':Explore<CR>', { desc = 'Open netrw' })
