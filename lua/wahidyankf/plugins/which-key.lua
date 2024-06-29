@@ -39,7 +39,6 @@ return { -- Useful plugin to show you pending keybinds.
       ['<leader>x'] = { name = 'File E[x]plorer', _ = 'which_key_ignore' },
 
       ['<localleader>r'] = { name = '[R]un', _ = 'which_key_ignore' },
-
       ['<bs>c'] = { name = '[C]onfig', _ = 'which_key_ignore' },
       ['<bs>cv'] = { name = '[V]im', _ = 'which_key_ignore' },
       ['<bs>p'] = { name = '[P]ackage Manager', _ = 'which_key_ignore' },
