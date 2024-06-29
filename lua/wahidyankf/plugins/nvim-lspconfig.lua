@@ -102,9 +102,6 @@ return { -- LSP Configuration & Plugins
         opts.desc = 'Show buffer diagnostics'
         vim.keymap.set('n', '<leader>cdb', '<cmd>Telescope diagnostics bufnr=0<CR>', opts) -- show  diagnostics for file
 
-        opts.desc = 'Show line diagnostics'
-        vim.keymap.st('n', '<leader>cdd', vim.diagnostic.open_float, opts) -- show diagnostics for line
-
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
         --    See `:help CursorHold` for information about when this is executed
@@ -163,7 +160,16 @@ return { -- LSP Configuration & Plugins
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
-      -- clangd = {},
+      'tsserver',
+      'html',
+      'cssls',
+      'tailwindcss',
+      'svelte',
+      'lua_ls',
+      'graphql',
+      'emmet_ls',
+      'prismals',
+      'pyright',
       gopls = {},
       pyright = {},
       rust_analyzer = {},
@@ -213,7 +219,6 @@ return { -- LSP Configuration & Plugins
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format Lua code
     })
-    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
     require('mason-lspconfig').setup {
       handlers = {
@@ -225,6 +230,17 @@ return { -- LSP Configuration & Plugins
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
           require('lspconfig')[server_name].setup(server)
         end,
+      },
+    }
+
+    require('mason-tool-installer').setup {
+      ensure_installed = {
+        'prettier', -- prettier formatter
+        'stylua', -- lua formatter
+        'isort', -- python formatter
+        'black', -- python formatter
+        'pylint', -- python linter
+        'eslint_d',
       },
     }
   end,
