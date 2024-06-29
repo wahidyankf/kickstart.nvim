@@ -15,6 +15,7 @@ return { -- Useful plugin to show you pending keybinds.
       ['<leader>cs'] = { name = '[S]ymbol', _ = 'which_key_ignore' },
       ['<leader>ct'] = { name = '[T]ype definitions', _ = 'which_key_ignore' },
 
+      ['<leader>d'] = { '[D]atabase' },
       ['<leader>e'] = { '[E]dit text' },
       ['<leader>f'] = { name = 'Fuzzy [F]ind', _ = 'which_key_ignore' },
 
