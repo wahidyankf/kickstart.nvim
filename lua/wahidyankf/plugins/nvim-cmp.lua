@@ -33,11 +33,18 @@ return { -- Autocompletion
     --  into multiple repos for maintenance purposes.
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
+    'rafamadriz/friendly-snippets', -- useful snippets
+    'onsails/lspkind.nvim', -- vs-code like pictograms
   },
   config = function()
     -- See `:help cmp`
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
+
+    local lspkind = require 'lspkind'
+    -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
+    require('luasnip.loaders.from_vscode').lazy_load()
+
     luasnip.config.setup {}
 
     cmp.setup {
@@ -55,8 +62,10 @@ return { -- Autocompletion
       mapping = cmp.mapping.preset.insert {
         -- Select the [n]ext item
         ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-j>'] = cmp.mapping.select_next_item(),
         -- Select the [p]revious item
         ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
 
         -- Scroll the documentation window [b]ack / [f]orward
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -69,9 +78,9 @@ return { -- Autocompletion
 
         -- If you prefer more traditional completion keymaps,
         -- you can uncomment the following lines
-        --['<CR>'] = cmp.mapping.confirm { select = true },
-        --['<Tab>'] = cmp.mapping.select_next_item(),
-        --['<S-Tab>'] = cmp.mapping.select_prev_item(),
+        ['<CR>'] = cmp.mapping.confirm { select = true },
+        ['<Tab>'] = cmp.mapping.select_next_item(),
+        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
         -- Manually trigger a completion from nvim-cmp.
         --  Generally you don't need this, because nvim-cmp will display
@@ -100,10 +109,23 @@ return { -- Autocompletion
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       },
+
+      -- sources for autocompletion
       sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'buffer' },
         { name = 'path' },
+      },
+
+      -- configure lspkind for vs-code like pictograms in completion menu
+      formatting = {
+        fields = { 'kind', 'abbr', 'menu' },
+        expandable_indicator = true,
+        format = lspkind.cmp_format {
+          maxwidth = 50,
+          ellipsis_char = '...',
+        },
       },
     }
   end,
