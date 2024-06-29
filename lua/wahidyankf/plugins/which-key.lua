@@ -41,6 +41,7 @@ return { -- Useful plugin to show you pending keybinds.
       ['<bs>c'] = { name = '[C]onfig', _ = 'which_key_ignore' },
       ['<bs>cv'] = { name = '[V]im', _ = 'which_key_ignore' },
       ['<bs>p'] = { name = '[P]ackage Manager', _ = 'which_key_ignore' },
+      ['<bs>t'] = { name = '[T]erminal', _ = 'which_key_ignore' },
     }
     -- visual mode
     require('which-key').register({

@@ -1,1 +1,1 @@
-vim.keymap.set('n', '<localleader>rr', ':split term://python %<cr>', { desc = 'Python: [R]un current file', silent = true })
+vim.keymap.set('n', '<localleader>rr', ':TermExec cmd="python %"<CR>', { desc = 'Python: [R]un current file', silent = true })
