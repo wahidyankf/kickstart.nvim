@@ -78,4 +78,4 @@ keymap.set('n', '<bs>cvt', ':tabnew $MYVIMRC<CR>', { desc = '[C]onfig: $MY[V]IMR
 keymap.set('n', '<bs>/', ':nohl<CR>', { desc = 'Clear search highlight' })
 
 -- Explore
-keymap.set('n', '<leader>xx', ':Explore<CR>', { desc = 'Open netrw' })
+keymap.set('n', '<leader>xn', ':Explore<CR>', { desc = 'Open netrw' })

@@ -4,8 +4,26 @@
 
 local opt = vim.opt
 
-opt.number = true
+vim.cmd 'let g:netrw_liststyle = 3'
+
+-- line numbers
 opt.relativenumber = true
+opt.number = true
+
+-- tabs & indentation
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
+opt.autoindent = true
+
+-- turn on termguicolors for nightfly colorscheme to work
+-- (have to use iterm2 or any other true color terminal)
+opt.termguicolors = true
+opt.background = 'dark' -- colorschemes that can be light or dark will be made dark
+opt.signcolumn = 'yes' -- show sign column so that text doesn't shift
+
+-- line wrapping
+opt.wrap = false
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 opt.mouse = 'a'
