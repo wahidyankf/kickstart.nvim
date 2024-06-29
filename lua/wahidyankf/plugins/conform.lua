@@ -24,7 +24,20 @@ return { -- Autoformat
       }
     end,
     formatters_by_ft = {
+      javascript = { 'prettier' },
+      css = { 'prettier' },
+      graphql = { 'prettier' },
+      html = { 'prettier' },
+      javascriptreact = { 'prettier' },
+      json = { 'prettier' },
+      liquid = { 'prettier' },
       lua = { 'stylua' },
+      markdown = { 'prettier' },
+      python = { 'isort', 'black' },
+      svelte = { 'prettier' },
+      typescript = { 'prettier' },
+      typescriptreact = { 'prettier' },
+      yaml = { 'prettier' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --

@@ -42,14 +42,15 @@ return { -- LSP Configuration & Plugins
 
     --  This function gets run when an LSP attaches to a particular buffer.
     --    That is to say, every time a new file is opened that is associated with
-    --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
-    --    function will be executed to configure the current buffer
+    --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this function will be executed to configure the current buffer
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
       callback = function(event)
         -- NOTE: Remember that Lua is a real programming language, and as such it is possible
         -- to define small helper and utility functions so you don't have to repeat yourself.
         --
+        local opts = { buffer = event.buf, silent = true }
+
         -- In this case, we create a function that lets us more easily define mappings specific
         -- for LSP related items. It sets the mode, buffer and description for us each time.
         local map_key = function(keys, func, desc)
@@ -96,6 +97,13 @@ return { -- LSP Configuration & Plugins
         -- WARN: This is not Goto Definition, this is Goto Declaration.
         --  For example, in C this would take you to the header.
         map_key('gD', vim.lsp.buf.declaration, 'LSP: [G]oto [D]eclaration')
+
+        -- diagnostics
+        opts.desc = 'Show buffer diagnostics'
+        vim.keymap.set('n', '<leader>cdb', '<cmd>Telescope diagnostics bufnr=0<CR>', opts) -- show  diagnostics for file
+
+        opts.desc = 'Show line diagnostics'
+        vim.keymap.st('n', '<leader>cdd', vim.diagnostic.open_float, opts) -- show diagnostics for line
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
@@ -183,14 +191,21 @@ return { -- LSP Configuration & Plugins
         },
       },
     }
-
     -- Ensure the servers and tools above are installed
     --  To check the current status of installed tools and/or manually install
     --  other tools, you can run
     --    :Mason
     --
     --  You can press `g?` for help in this menu.
-    require('mason').setup()
+    require('mason').setup {
+      ui = {
+        icons = {
+          package_installed = '✓',
+          package_pending = '➜',
+          package_uninstalled = '✗',
+        },
+      },
+    }
 
     -- You can add other tools here that you want Mason to install
     -- for you, so that they are available from within Neovim.
