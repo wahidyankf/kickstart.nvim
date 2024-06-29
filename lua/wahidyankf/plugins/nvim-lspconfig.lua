@@ -170,6 +170,9 @@ return { -- LSP Configuration & Plugins
       'emmet_ls',
       'prismals',
       'pyright',
+      'clj-kondo',
+      'cljfmt',
+      'clojure-lsp',
       gopls = {},
       pyright = {},
       rust_analyzer = {},
@@ -241,6 +244,9 @@ return { -- LSP Configuration & Plugins
         'black', -- python formatter
         'pylint', -- python linter
         'eslint_d',
+        'clj-kondo',
+        'cljfmt',
+        'clojure-lsp',
       },
     }
   end,
