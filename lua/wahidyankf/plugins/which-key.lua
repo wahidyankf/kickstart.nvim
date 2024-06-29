@@ -15,6 +15,7 @@ return { -- Useful plugin to show you pending keybinds.
       ['<leader>cs'] = { name = '[S]ymbol', _ = 'which_key_ignore' },
       ['<leader>ct'] = { name = '[T]ype definitions', _ = 'which_key_ignore' },
 
+      ['<leader>e'] = { '[E]dit text' },
       ['<leader>f'] = { name = 'Fuzzy [F]ind', _ = 'which_key_ignore' },
 
       ['<leader>g'] = { name = '[G]it ', _ = 'which_key_ignore' },
@@ -44,6 +45,8 @@ return { -- Useful plugin to show you pending keybinds.
     -- visual mode
     require('which-key').register({
       ['<leader>b'] = { '[B]uffer' },
+      ['<leader>e'] = { '[E]dit text' },
+      ['<leader>es'] = { '[S]ubtitute' },
       ['<leader>g'] = { '[G]it' },
       ['<leader>gr'] = { name = '[R]eset', _ = 'which_key_ignore' },
       ['<leader>gs'] = { name = '[S]tage', _ = 'which_key_ignore' },
