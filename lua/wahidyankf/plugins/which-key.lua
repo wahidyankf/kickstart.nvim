@@ -17,6 +17,7 @@ return { -- Useful plugin to show you pending keybinds.
 
       ['<leader>d'] = { '[D]atabase' },
       ['<leader>e'] = { '[E]dit text' },
+      ['<leader>es'] = { '[S]ubstitute' },
       ['<leader>f'] = { name = 'Fuzzy [F]ind', _ = 'which_key_ignore' },
 
       ['<leader>g'] = { name = '[G]it ', _ = 'which_key_ignore' },
@@ -48,6 +49,7 @@ return { -- Useful plugin to show you pending keybinds.
       ['<leader>b'] = { '[B]uffer' },
       ['<leader>e'] = { '[E]dit text' },
       ['<leader>es'] = { '[S]ubtitute' },
+      ['<leader>eo'] = { 'S[O]rt' },
       ['<leader>g'] = { '[G]it' },
       ['<leader>gr'] = { name = '[R]eset', _ = 'which_key_ignore' },
       ['<leader>gs'] = { name = '[S]tage', _ = 'which_key_ignore' },

@@ -14,6 +14,6 @@ return {
     -- Your DBUI configuration
     vim.g.db_ui_use_nerd_fonts = 1
 
-    vim.keymap.set('n', '<leader>db', ':DBUIToggle<CR>', { desc = '[D]atabase [B]uffer' })
+    vim.keymap.set('n', '<leader>db', ':DBUIToggle<CR>', { desc = 'Database [B]uffer' })
   end,
 }

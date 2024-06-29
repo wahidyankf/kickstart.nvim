@@ -71,15 +71,18 @@ keymap.set('n', '<leader>t9', '9gt', { desc = 'Tab: Go to tab [9]' })
 keymap.set('n', '<leader>t0', ':tablast<CR>', { desc = 'Tab: Go to last tab' })
 
 -- config
-keymap.set('n', '<bs>cvr', ':source $MYVIMRC<CR>', { desc = '[C]onfig: $MY[V]IMRC: [R]eload' })
 keymap.set('n', '<bs>cve', ':e $MYVIMRC<CR>', { desc = '[C]onfig: $MY[V]IMRC: op[E]n' })
+keymap.set('n', '<bs>cvr', ':source $MYVIMRC<CR>', { desc = '[C]onfig: $MY[V]IMRC: [R]eload' })
+keymap.set('n', '<bs>cvt', ':tabnew $MYVIMRC<CR>', { desc = '[C]onfig: $MY[V]IMRC open in new [t]ab' })
 keymap.set('n', '<bs>cvv', ':vsp<CR> :e $MYVIMRC<CR>', { desc = '[C]onfig: $MY[V]IMRC open in new [v]split' })
 keymap.set('n', '<bs>cvx', ':sp<CR> :e $MYVIMRC<CR>', { desc = '[C]onfig: $MY[V]IMRC open in new [s]plit' })
-keymap.set('n', '<bs>cvt', ':tabnew $MYVIMRC<CR>', { desc = '[C]onfig: $MY[V]IMRC open in new [t]ab' })
 
 -- clear search
+keymap.set('n', '<Esc>', ":'<,'>nohlsearch<CR>", { desc = 'Clear search highlight' })
 keymap.set('n', '<bs>/', ':nohl<CR>', { desc = 'Clear search highlight' })
-keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Explore
 keymap.set('n', '<leader>xn', ':Explore<CR>', { desc = 'Open netrw' })
+
+-- text manipulation
+keymap.set('x', '<leader>eoa', ":'<,'>sort<CR>", { desc = 'Sort selected text [A]scending' })
