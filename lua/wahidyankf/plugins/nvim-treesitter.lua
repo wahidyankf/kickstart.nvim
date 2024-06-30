@@ -8,6 +8,7 @@ return { -- Highlight, edit, and navigate code
       'clojure',
       'diff',
       'elixir',
+      'go',
       'html',
       'lua',
       'luadoc',

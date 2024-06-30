@@ -31,10 +31,19 @@ return {
       dapui.close()
     end
 
-    vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Toggle [B]reakpoint' })
-    vim.keymap.set('n', '<leader>dq', dap.terminate, { desc = 'Terminate debugging process [Q]' })
+    vim.keymap.set('n', '<leader>dd', dap.continue, { desc = 'Run [D]ebugging' })
+    vim.keymap.set('n', '<leader>dq', dap.close, { desc = 'Terminate debugging process [Q]' })
+    vim.keymap.set('n', '<leader>dbb', dap.toggle_breakpoint, { desc = 'Toggle [B]reakpoint' })
+    vim.keymap.set('n', '<leader>dbr', dap.clear_breakpoints, { desc = 'Clea[R] all breakpoint' })
+    vim.keymap.set('n', '<leader>dbl', dap.clear_breakpoints, { desc = '[L]ist all breakpoint' })
     vim.keymap.set('n', '<leader>dg', dap.run_to_cursor, { desc = '[G]o to cursor' })
     vim.keymap.set('n', '<leader>dc', dap.continue, { desc = '[C]ontinue debugging' })
-    vim.keymap.set('n', '<leader>dr', ":lua require('dapui').open({reset = true})<CR>", { desc = '[R]eset debugging' })
+    vim.keymap.set('n', '<leader>dso', dap.step_out, { desc = 'Step [O]ut' })
+    vim.keymap.set('n', '<leader>dsb', dap.step_back, { desc = 'Step [B]ack' })
+    vim.keymap.set('n', '<leader>dsi', dap.step_into, { desc = 'Step [I]nto' })
+    vim.keymap.set('n', '<leader>dsv', dap.step_over, { desc = 'Step O[V]er' })
+    vim.keymap.set('n', '<leader>dr', dap.restart, { desc = '[R]estart debugging' })
+
+    -- vim.keymap.set('n', '<leader>dr', ":lua require('dapui').open({reset = true})<CR>", { desc = '[R]eset debugging' })
   end,
 }

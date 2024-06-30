@@ -35,6 +35,8 @@ return { -- Useful plugin to show you pending keybinds.
 
       ['<leader>t'] = { name = '[T]ab', _ = 'which_key_ignore' },
       ['<leader>d'] = { name = '[D]ebug', _ = 'which_key_ignore' },
+      ['<leader>db'] = { name = 'Debugging [B]reakpoint', _ = 'which_key_ignore' },
+      ['<leader>ds'] = { name = '[S]tep', _ = 'which_key_ignore' },
       ['<leader>w'] = { name = '[W]orking session', _ = 'which_key_ignore' },
       ['<leader>x'] = { name = 'File E[x]plorer', _ = 'which_key_ignore' },
 
