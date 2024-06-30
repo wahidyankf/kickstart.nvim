@@ -6,15 +6,15 @@ return { -- Useful plugin to show you pending keybinds.
 
     -- Document existing key chains
     require('which-key').register {
-      ['<leader>b'] = { name = '[B]uffer', _ = 'which_key_ignore' },
-      ['<leader>bc'] = { name = '[C]lose', _ = 'which_key_ignore' },
+      ['<leader>u'] = { name = 'B[U]ffer', _ = 'which_key_ignore' },
+      ['<leader>uc'] = { name = '[C]lose buffer', _ = 'which_key_ignore' },
       ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
       ['<leader>cd'] = { name = '[D]iagnostic', _ = 'which_key_ignore' },
       ['<leader>ch'] = { name = '[H]int', _ = 'which_key_ignore' },
       ['<leader>cs'] = { name = '[S]ymbol', _ = 'which_key_ignore' },
       ['<leader>ct'] = { name = '[T]ype definitions', _ = 'which_key_ignore' },
 
-      ['<leader>d'] = { '[D]atabase' },
+      ['<leader>b'] = { 'Data[B]ase' },
       ['<leader>e'] = { '[E]dit text' },
       ['<leader>es'] = { '[S]ubstitute' },
       ['<leader>f'] = { name = 'Fuzzy [F]ind', _ = 'which_key_ignore' },
@@ -34,6 +34,7 @@ return { -- Useful plugin to show you pending keybinds.
       ['<leader>ss'] = { name = '[S]ize', _ = 'which_key_ignore' },
 
       ['<leader>t'] = { name = '[T]ab', _ = 'which_key_ignore' },
+      ['<leader>d'] = { name = '[D]ebug', _ = 'which_key_ignore' },
       ['<leader>w'] = { name = '[W]orking session', _ = 'which_key_ignore' },
       ['<leader>x'] = { name = 'File E[x]plorer', _ = 'which_key_ignore' },
 
@@ -45,7 +46,7 @@ return { -- Useful plugin to show you pending keybinds.
     }
     -- visual mode
     require('which-key').register({
-      ['<leader>b'] = { '[B]uffer' },
+      ['<leader>u'] = { 'B[U]ffer' },
       ['<leader>e'] = { '[E]dit text' },
       ['<leader>es'] = { '[S]ubtitute' },
       ['<leader>eo'] = { 'S[O]rt' },

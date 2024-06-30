@@ -45,9 +45,9 @@ keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window'
 keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- buffer management
-keymap.set('n', '<leader>bw', ':w<CR>', { desc = '[W]rite current' })
-keymap.set('n', '<leader>bq', ':q<CR>', { desc = '[Q]uit current' })
-keymap.set('n', '<leader>bca', ':w | %bd | e#<CR>', { desc = 'Close all buffer except current' })
+keymap.set('n', '<leader>uw', ':w<CR>', { desc = '[W]rite current' })
+keymap.set('n', '<leader>uq', ':q<CR>', { desc = '[Q]uit current' })
+keymap.set('n', '<leader>uca', ':w | %bd | e#<CR>', { desc = 'Close all buffer except current' })
 
 -- split management
 keymap.set('n', '<leader>sv', ':vsp<CR>', { desc = 'Split: current buffer [V]ertically' })

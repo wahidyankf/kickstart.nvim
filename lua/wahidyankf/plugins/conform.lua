@@ -3,7 +3,7 @@ return { -- Autoformat
   lazy = false,
   keys = {
     {
-      '<leader>bf',
+      '<leader>uf',
       function()
         require('conform').format { async = true, lsp_fallback = true }
       end,
