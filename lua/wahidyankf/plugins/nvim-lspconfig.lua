@@ -173,6 +173,7 @@ return { -- LSP Configuration & Plugins
       'clj-kondo',
       'cljfmt',
       'clojure-lsp',
+      'java-language-server',
       gopls = {},
       pyright = {},
       rust_analyzer = {},
