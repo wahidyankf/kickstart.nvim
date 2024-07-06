@@ -13,6 +13,7 @@ return {
       }
 
       vim.keymap.set('n', '<bs>tt', ':ToggleTerm<CR>', { desc = '[T]oggle terminal' })
+      vim.keymap.set('n', '<C-t><C-t>', ':ToggleTerm<CR>', { desc = '[T]oggle terminal' })
     end,
   },
 }
