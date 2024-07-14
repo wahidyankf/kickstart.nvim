@@ -5,7 +5,7 @@ local keymap = vim.keymap
 
 -- quit vim
 keymap.set('n', '<leader>qq', ':q<CR>', { desc = 'quit' })
-keymap.set('n', '<leader>qa', ':qa<CR>', { desc = 'quit' })
+keymap.set('n', '<leader>qa', ':qa<CR>', { desc = 'quit all' })
 
 -- number operations
 keymap.set('n', '<leader>=', '<C-a>', { desc = 'Increment number' })

@@ -129,16 +129,25 @@ return {
         },
       },
     }
-    require('which-key').register {
-      ['<localleader>i'] = { name = 'Paredit: ed[I]t', _ = 'which_key_ignore' },
-      ['<localleader>id'] = { name = 'Paredit: [D]rag', _ = 'which_key_ignore' },
-      ['<localleader>ir'] = { name = 'Paredit: [R]aise', _ = 'which_key_ignore' },
-      ['<localleader>m'] = { name = 'Paredit: [M]ove', _ = 'which_key_ignore' },
+
+    require('which-key').add {
+      { '<localleader>i', group = 'Paredit: ed[I]t' },
+      { '<localleader>i_', hidden = true },
+      { '<localleader>id', group = 'Paredit: [D]rag' },
+      { '<localleader>id_', hidden = true },
+      { '<localleader>ir', group = 'Paredit: [R]aise' },
+      { '<localleader>ir_', hidden = true },
+      { '<localleader>m', group = 'Paredit: [M]ove' },
+      { '<localleader>m_', hidden = true },
+      {
+        mode = { 'o', 'v' },
+        { '<localleader>x', group = 'Paredit: Select' },
+        { '<localleader>x_', hidden = true },
+        { '<localleader>xa', group = 'Paredit: Select [A]round' },
+        { '<localleader>xa_', hidden = true },
+        { '<localleader>xi', group = 'Paredit: Select [I]n' },
+        { '<localleader>xi_', hidden = true },
+      },
     }
-    require('which-key').register({
-      ['<localleader>x'] = { name = 'Paredit: Select', _ = 'which_key_ignore' },
-      ['<localleader>xa'] = { name = 'Paredit: Select [A]round', _ = 'which_key_ignore' },
-      ['<localleader>xi'] = { name = 'Paredit: Select [I]n', _ = 'which_key_ignore' },
-    }, { mode = { 'o', 'v' } })
   end,
 }

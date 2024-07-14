@@ -2,59 +2,102 @@ return { -- Useful plugin to show you pending keybinds.
   'folke/which-key.nvim',
   event = 'VimEnter', -- Sets the loading event to 'VimEnter'
   config = function() -- This is the function that runs, AFTER loading
-    require('which-key').setup()
+    local whichkey = require 'which-key'
+    whichkey.setup {}
 
-    -- Document existing key chains
-    require('which-key').register {
-      ['<leader>u'] = { name = 'B[U]ffer', _ = 'which_key_ignore' },
-      ['<leader>uc'] = { name = '[C]lose buffer', _ = 'which_key_ignore' },
-      ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-      ['<leader>cd'] = { name = '[D]iagnostic', _ = 'which_key_ignore' },
-      ['<leader>ch'] = { name = '[H]int', _ = 'which_key_ignore' },
-      ['<leader>cs'] = { name = '[S]ymbol', _ = 'which_key_ignore' },
-      ['<leader>ct'] = { name = '[T]ype definitions', _ = 'which_key_ignore' },
+    whichkey.add {
+      { '<bs>c', group = '[C]onfig' },
+      { '<bs>c_', hidden = true },
+      { '<bs>cv', group = '[V]im' },
+      { '<bs>cv_', hidden = true },
 
-      ['<leader>b'] = { 'Data[B]ase' },
-      ['<leader>e'] = { '[E]dit text' },
-      ['<leader>es'] = { '[S]ubstitute' },
-      ['<leader>f'] = { name = 'Fuzzy [F]ind', _ = 'which_key_ignore' },
+      { '<bs>p', group = '[P]ackage Manager' },
+      { '<bs>p_', hidden = true },
 
-      ['<leader>g'] = { name = '[G]it ', _ = 'which_key_ignore' },
-      ['<leader>gb'] = { name = '[B]lame', _ = 'which_key_ignore' },
-      ['<leader>gd'] = { name = '[D]iff', _ = 'which_key_ignore' },
-      ['<leader>ge'] = { name = 'D[e]leted', _ = 'which_key_ignore' },
-      ['<leader>gr'] = { name = '[R]eset', _ = 'which_key_ignore' },
-      ['<leader>gs'] = { name = '[S]tage', _ = 'which_key_ignore' },
-      ['<leader>gu'] = { name = '[U]ndo', _ = 'which_key_ignore' },
-      ['<leader>gv'] = { name = '[V]iew', _ = 'which_key_ignore' },
+      { '<bs>t', group = '[T]erminal' },
+      { '<bs>t_', hidden = true },
 
-      ['<leader>q'] = { name = '[Q]uit', _ = 'which_key_ignore' },
+      { '<leader>b', desc = 'Data[B]ase' },
 
-      ['<leader>s'] = { name = '[S]plit', _ = 'which_key_ignore' },
-      ['<leader>ss'] = { name = '[S]ize', _ = 'which_key_ignore' },
+      { '<leader>c', group = '[C]ode' },
+      { '<leader>c_', hidden = true },
+      { '<leader>cd', group = '[D]iagnostic' },
+      { '<leader>cd_', hidden = true },
+      { '<leader>ch', group = '[H]int' },
+      { '<leader>ch_', hidden = true },
+      { '<leader>cs', group = '[S]ymbol' },
+      { '<leader>cs_', hidden = true },
+      { '<leader>ct', group = '[T]ype definitions' },
+      { '<leader>ct_', hidden = true },
 
-      ['<leader>t'] = { name = '[T]ab', _ = 'which_key_ignore' },
-      ['<leader>d'] = { name = '[D]ebug', _ = 'which_key_ignore' },
-      ['<leader>db'] = { name = 'Debugging [B]reakpoint', _ = 'which_key_ignore' },
-      ['<leader>ds'] = { name = '[S]tep', _ = 'which_key_ignore' },
-      ['<leader>w'] = { name = '[W]orking session', _ = 'which_key_ignore' },
-      ['<leader>x'] = { name = 'File E[x]plorer', _ = 'which_key_ignore' },
+      { '<leader>d', group = '[D]ebug' },
+      { '<leader>d_', hidden = true },
+      { '<leader>db', group = 'Debugging [B]reakpoint' },
+      { '<leader>db_', hidden = true },
+      { '<leader>ds', group = '[S]tep' },
+      { '<leader>ds_', hidden = true },
 
-      ['<localleader>r'] = { name = '[R]un', _ = 'which_key_ignore' },
-      ['<bs>c'] = { name = '[C]onfig', _ = 'which_key_ignore' },
-      ['<bs>cv'] = { name = '[V]im', _ = 'which_key_ignore' },
-      ['<bs>p'] = { name = '[P]ackage Manager', _ = 'which_key_ignore' },
-      ['<bs>t'] = { name = '[T]erminal', _ = 'which_key_ignore' },
+      { '<leader>e', desc = '[E]dit text' },
+      { '<leader>es', desc = '[S]ubstitute' },
+
+      { '<leader>f', group = 'Fuzzy [F]ind' },
+      { '<leader>f_', hidden = true },
+
+      { '<leader>g', group = '[G]it ' },
+      { '<leader>g_', hidden = true },
+      { '<leader>gb', group = '[B]lame' },
+      { '<leader>gb_', hidden = true },
+      { '<leader>gd', group = '[D]iff' },
+      { '<leader>gd_', hidden = true },
+      { '<leader>ge', group = 'D[e]leted' },
+      { '<leader>ge_', hidden = true },
+      { '<leader>gr', group = '[R]eset' },
+      { '<leader>gr_', hidden = true },
+      { '<leader>gs', group = '[S]tage' },
+      { '<leader>gs_', hidden = true },
+      { '<leader>gu', group = '[U]ndo' },
+      { '<leader>gu_', hidden = true },
+      { '<leader>gv', group = '[V]iew' },
+      { '<leader>gv_', hidden = true },
+
+      { '<leader>q', group = '[Q]uit' },
+      { '<leader>q_', hidden = true },
+
+      { '<leader>s', group = '[S]plit' },
+      { '<leader>s_', hidden = true },
+      { '<leader>ss', group = '[S]ize' },
+      { '<leader>ss_', hidden = true },
+
+      { '<leader>t', group = '[T]ab' },
+      { '<leader>t_', hidden = true },
+
+      { '<leader>u', group = 'B[U]ffer' },
+      { '<leader>u_', hidden = true },
+      { '<leader>uc', group = '[C]lose buffer' },
+      { '<leader>uc_', hidden = true },
+
+      { '<leader>w', group = '[W]orking session' },
+      { '<leader>w_', hidden = true },
+
+      { '<leader>x', group = 'File E[x]plorer' },
+      { '<leader>x_', hidden = true },
+
+      { '<localleader>r', group = '[R]un' },
+      { '<localleader>r_', hidden = true },
+      {
+        mode = { 'v' },
+        { '<leader>e', desc = '[E]dit text' },
+        { '<leader>eo', desc = 'S[O]rt' },
+        { '<leader>es', desc = '[S]ubtitute' },
+
+        { '<leader>g', desc = '[G]it' },
+        { '<leader>gr', group = '[R]eset' },
+        { '<leader>gr_', hidden = true },
+        { '<leader>gs', group = '[S]tage' },
+        { '<leader>gs_', hidden = true },
+
+        { '<leader>u', desc = 'B[U]ffer' },
+      },
     }
-    -- visual mode
-    require('which-key').register({
-      ['<leader>u'] = { 'B[U]ffer' },
-      ['<leader>e'] = { '[E]dit text' },
-      ['<leader>es'] = { '[S]ubtitute' },
-      ['<leader>eo'] = { 'S[O]rt' },
-      ['<leader>g'] = { '[G]it' },
-      ['<leader>gr'] = { name = '[R]eset', _ = 'which_key_ignore' },
-      ['<leader>gs'] = { name = '[S]tage', _ = 'which_key_ignore' },
-    }, { mode = 'v' })
   end,
 }
