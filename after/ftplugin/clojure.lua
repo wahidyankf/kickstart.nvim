@@ -1,11 +1,28 @@
-require('which-key').register {
-  ['<localleader>c'] = { name = 'Conjure: REPL [c]onnection', _ = 'which_key_ignore' },
-  ['<localleader>e'] = { name = 'Conjure: [E]valuate', _ = 'which_key_ignore' },
-  ['<localleader>ec'] = { name = 'Conjure: Evaluate and [C]omment', _ = 'which_key_ignore' },
-  ['<localleader>g'] = { name = 'Conjure: [G]et definition under the cursor', _ = 'which_key_ignore' },
-  ['<localleader>l'] = { name = 'Conjure: [L]og', _ = 'which_key_ignore' },
-  ['<localleader>r'] = { name = 'Conjure: [R]efresh and clear', _ = 'which_key_ignore' },
-  ['<localleader>s'] = { name = 'Conjure: NREPL [S]ession', _ = 'which_key_ignore' },
-  ['<localleader>t'] = { name = 'Conjure: [T]est', _ = 'which_key_ignore' },
-  ['<localleader>v'] = { name = 'Conjure: [V]iew or Display', _ = 'which_key_ignore' },
+require('which-key').add {
+
+  { '<localleader>c', group = 'Conjure: REPL [c]onnection' },
+  { '<localleader>c_', hidden = true },
+
+  { '<localleader>e', group = 'Conjure: [E]valuate' },
+  { '<localleader>e_', hidden = true },
+  { '<localleader>ec', group = 'Conjure: Evaluate and [C]omment' },
+  { '<localleader>ec_', hidden = true },
+
+  { '<localleader>g', group = 'Conjure: [G]et definition under the cursor' },
+  { '<localleader>g_', hidden = true },
+
+  { '<localleader>l', group = 'Conjure: [L]og' },
+  { '<localleader>l_', hidden = true },
+
+  { '<localleader>r', group = 'Conjure: [R]efresh and clear' },
+  { '<localleader>r_', hidden = true },
+
+  { '<localleader>s', group = 'Conjure: NREPL [S]ession' },
+  { '<localleader>s_', hidden = true },
+
+  { '<localleader>t', group = 'Conjure: [T]est' },
+  { '<localleader>t_', hidden = true },
+
+  { '<localleader>v', group = 'Conjure: [V]iew or Display' },
+  { '<localleader>v_', hidden = true },
 }
