@@ -14,7 +14,7 @@ return {
     keymap.set(
       'n',
       '<leader>ww',
-      '<cmd>NvimTreeClose<CR><cmd>DBUIClose<CR><cmd>SessionSave<CR><cmd>echo "Session saved!!"<CR>',
+      '<cmd>NvimTreeClose<CR><cmd>DBUI<CR><cmd>DBUIClose<CR><cmd>SessionSave<CR><cmd>echo "Session saved!!"<CR>',
       { desc = '[W]orking Session: Save for auto session root dir' }
     ) -- save workspace session for current working directory
 
