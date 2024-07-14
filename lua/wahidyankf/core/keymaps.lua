@@ -47,6 +47,7 @@ keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window'
 -- buffer management
 keymap.set('n', '<leader>uw', ':w<CR>', { desc = '[W]rite current' })
 keymap.set('n', '<leader>uq', ':q<CR>', { desc = '[Q]uit current' })
+keymap.set('n', '<leader>uo', ':!echo % | pbcopy <CR>', { desc = 'Print l[o]cation and copy to clipboard' })
 keymap.set('n', '<leader>uca', ':w | %bd | e#<CR>', { desc = 'Close all buffer except current' })
 
 -- split management
