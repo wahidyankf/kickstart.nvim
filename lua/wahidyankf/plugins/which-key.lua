@@ -84,6 +84,7 @@ return { -- Useful plugin to show you pending keybinds.
 
       { '<localleader>r', group = '[R]un' },
       { '<localleader>r_', hidden = true },
+
       {
         mode = { 'v' },
         { '<leader>e', desc = '[E]dit text' },
