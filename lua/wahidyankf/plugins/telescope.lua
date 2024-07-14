@@ -4,6 +4,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
+    'ThePrimeagen/harpoon',
     { -- If encountering errors, see telescope-fzf-native README for installation instructions
       'nvim-telescope/telescope-fzf-native.nvim',
 
@@ -45,6 +46,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- See `:help telescope` and `:help telescope.setup()`
     local telescope = require 'telescope'
     local actions = require 'telescope.actions'
+    telescope.load_extension 'harpoon'
 
     telescope.setup {
       defaults = {
