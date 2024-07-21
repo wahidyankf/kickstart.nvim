@@ -6,6 +6,9 @@ return { -- Useful plugin to show you pending keybinds.
     whichkey.setup {}
 
     whichkey.add {
+      { '<C-t>', group = '[T]erminal' },
+      { '<C-t>t_', hidden = true },
+
       { '<bs>c', group = '[C]onfig' },
       { '<bs>c_', hidden = true },
       { '<bs>cv', group = '[V]im' },
