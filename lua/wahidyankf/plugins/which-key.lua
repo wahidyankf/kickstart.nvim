@@ -20,6 +20,9 @@ return { -- Useful plugin to show you pending keybinds.
       { '<bs>t', group = '[T]erminal' },
       { '<bs>t_', hidden = true },
 
+      { '<bs>w', group = '[W]rap' },
+      { '<bs>w_', hidden = true },
+
       { '<leader>b', desc = 'Data[B]ase' },
 
       { '<leader>c', group = '[C]ode' },
