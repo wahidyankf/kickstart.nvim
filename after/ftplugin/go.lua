@@ -1,1 +1,17 @@
-vim.keymap.set('n', '<localleader>rr', ':TermExec cmd="go run %"<CR>', { silent = true, desc = 'Go: Quick [R]un current file' })
+local run_current_file = '"go run %"'
+
+vim.keymap.set('n', '<localleader>rrr', ':TermExec cmd=' .. run_current_file .. '<CR>', { desc = 'Go: Quick [R]un current file', silent = true })
+vim.keymap.set(
+  'n',
+  '<localleader>rrx',
+  ':TermExec cmd=' .. run_current_file .. 'direction=horizontal<CR>',
+  { desc = 'Go: Quick [R]un current file', silent = true }
+)
+vim.keymap.set(
+  'n',
+  '<localleader>rrv',
+  ':TermExec cmd=' .. run_current_file .. 'direction=vertical<CR>',
+  { desc = 'Go: Quick [R]un current file', silent = true }
+)
+vim.keymap.set('n', '<localleader>rrt', ':TermExec cmd=' .. run_current_file .. 'direction=tab<CR>', { desc = 'Go: Quick [R]un current file', silent = true })
+vim.keymap.set('n', '<localleader>rrf', ':TermExec cmd=' .. run_current_file .. 'direction=float<CR>', { desc = 'Go: Quick [R]un current file', silent = true })
