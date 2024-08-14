@@ -112,6 +112,7 @@ return { -- Autocompletion
 
       -- sources for autocompletion
       sources = {
+        { name = 'codeium' },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'vim-dadbod-completion' },
