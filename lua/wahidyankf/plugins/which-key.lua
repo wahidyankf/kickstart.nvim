@@ -27,6 +27,12 @@ return { -- Useful plugin to show you pending keybinds.
 
       { '<leader>c', group = '[C]ode' },
       { '<leader>c_', hidden = true },
+
+      { '<leader>cc', group = '[C]hat' },
+      { '<leader>cc_', hidden = true },
+      { '<leader>ccf', group = '[F]ix' },
+      { '<leader>ccf_', hidden = true },
+
       { '<leader>cd', group = '[D]iagnostic' },
       { '<leader>cd_', hidden = true },
       { '<leader>ch', group = '[H]int' },
@@ -93,6 +99,13 @@ return { -- Useful plugin to show you pending keybinds.
 
       {
         mode = { 'v' },
+        { '<leader>c', group = '[C]ode' },
+        { '<leader>c_', hidden = true },
+        { '<leader>cc', group = '[C]hat' },
+        { '<leader>cc_', hidden = true },
+        { '<leader>ccf', group = '[F]ix' },
+        { '<leader>ccf_', hidden = true },
+
         { '<leader>e', desc = '[E]dit text' },
         { '<leader>eo', desc = 'S[O]rt' },
         { '<leader>es', desc = '[S]ubtitute' },

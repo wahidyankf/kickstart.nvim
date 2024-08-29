@@ -87,3 +87,12 @@ keymap.set('n', '<leader>xn', ':Explore<CR>', { desc = 'Open netrw' })
 
 -- text manipulation
 keymap.set('x', '<leader>eoa', ":'<,'>sort<CR>", { desc = 'Sort selected text [A]scending' })
+
+-- copilot chat
+keymap.set('n', '<leader>ccc', ':CopilotChatToggle<CR>', { desc = 'Copilot [C]hat Toggle', silent = true })
+
+keymap.set('v', '<leader>cce', ':CopilotChatExplain<CR>', { desc = 'Copilot Chat [E]xplain', silent = true })
+keymap.set('v', '<leader>ccff', ':CopilotChatFix<CR>', { desc = 'Copilot Chat [F]ix', silent = true })
+keymap.set('v', '<leader>cco', ':CopilotChatOptimize<CR>', { desc = 'Copilot Chat [O]ptimize', silent = true })
+keymap.set('v', '<leader>ccd', ':CopilotChatDocs<CR>', { desc = 'Copilot Chat [D]ocs', silent = true })
+keymap.set('v', '<leader>cct', ':CopilotChatTests<CR>', { desc = 'Copilot Chat [T]ests', silent = true })
