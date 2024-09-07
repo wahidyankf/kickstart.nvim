@@ -44,6 +44,11 @@ keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window'
 keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+keymap.set('n', '<C-w>+', ':resize +5<cr>', { desc = 'Resize window vertically +5' })
+keymap.set('n', '<C-w>-', ':resize -5<cr>', { desc = 'Resize window vertically -5' })
+keymap.set('n', '<C-w>>', ':vertical resize -5<cr>', { desc = 'Resize window horizontally -5' })
+keymap.set('n', '<C-w><', ':vertical resize +5<cr>', { desc = 'Resize window horizontally +5' })
+
 -- buffer management
 keymap.set('n', '<leader>uw', ':w<CR>', { desc = '[W]rite current' })
 keymap.set('n', '<leader>uq', ':q<CR>', { desc = '[Q]uit current' })
@@ -79,7 +84,7 @@ keymap.set('n', '<bs>cvv', ':vsp<CR> :e $MYVIMRC<CR>', { desc = '[C]onfig: $MY[V
 keymap.set('n', '<bs>cvx', ':sp<CR> :e $MYVIMRC<CR>', { desc = '[C]onfig: $MY[V]IMRC open in new [s]plit' })
 
 -- clear search
-keymap.set('n', '<Esc>', ":'<,'>nohlsearch<CR>", { desc = 'Clear search highlight' })
+keymap.set('n', '<Esc>', '', { desc = 'Clear search highlight' })
 keymap.set('n', '<bs>/', ':nohl<CR>', { desc = 'Clear search highlight' })
 
 -- Explore

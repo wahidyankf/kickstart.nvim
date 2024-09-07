@@ -102,6 +102,9 @@ return { -- LSP Configuration & Plugins
         opts.desc = 'Show buffer diagnostics'
         vim.keymap.set('n', '<leader>cdu', '<cmd>Telescope diagnostics bufnr=0<CR>', opts) -- show  diagnostics for file
 
+        vim.keymap.set('n', ']g', vim.diagnostic.goto_next)
+        vim.keymap.set('n', '[g', vim.diagnostic.goto_prev)
+
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
         --    See `:help CursorHold` for information about when this is executed

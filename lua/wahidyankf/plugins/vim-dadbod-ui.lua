@@ -18,6 +18,6 @@ return {
     vim.g.db_ui_save_location = '~/Dropbox/wkf-dbs/db_ui_queries'
 
     vim.keymap.set('n', '<leader>bv', ':DBUIToggle<CR>', { desc = 'Toggle DB [V]iew' })
-    vim.keymap.set('n', '<leader>bc', ':DBUIAddConnection<CR>', { desc = 'Toggle DB [V]iew' })
+    vim.keymap.set('n', '<leader>bc', ':DBUIAddConnection<CR>', { desc = 'New DB [C]onnection' })
   end,
 }

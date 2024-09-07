@@ -1,4 +1,4 @@
-local run_current_file = '"deno run %"'
+local run_current_file = '"ts-node %"'
 
 vim.keymap.set('n', '<localleader>rrr', ':TermExec cmd=' .. run_current_file .. '<CR>', { desc = 'Deno: Quick [R]un current file', silent = true })
 vim.keymap.set(
