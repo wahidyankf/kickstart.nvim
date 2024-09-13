@@ -65,6 +65,12 @@ return { -- Fuzzy Finder (files, lsp, etc)
           },
         },
       },
+      pickers = {
+        find_files = {
+          follow = true,
+          hidden = true,
+        },
+      },
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
@@ -116,8 +122,12 @@ return { -- Fuzzy Finder (files, lsp, etc)
     end, { desc = 'Find [/] in Open Files' })
 
     -- Shortcut for searching your Neovim configuration files
-    vim.keymap.set('n', '<leader>fn', function()
+    vim.keymap.set('n', '<leader>fv', function()
       builtin.find_files { cwd = vim.fn.stdpath 'config' }
-    end, { desc = 'Find [N]eovim files' })
+    end, { desc = 'Find Neo[V]im files' })
+
+    vim.keymap.set('n', '<leader>fc', function()
+      builtin.find_files { search_dirs = { '~/.config', '~/wkf-devbox/' } }
+    end, { desc = 'Find [C]onfig files' })
   end,
 }

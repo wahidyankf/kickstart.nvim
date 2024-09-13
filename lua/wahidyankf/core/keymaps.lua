@@ -83,6 +83,16 @@ keymap.set('n', '<bs>cvt', ':tabnew $MYVIMRC<CR>', { desc = '[C]onfig: $MY[V]IMR
 keymap.set('n', '<bs>cvv', ':vsp<CR> :e $MYVIMRC<CR>', { desc = '[C]onfig: $MY[V]IMRC open in new [v]split' })
 keymap.set('n', '<bs>cvx', ':sp<CR> :e $MYVIMRC<CR>', { desc = '[C]onfig: $MY[V]IMRC open in new [s]plit' })
 
+keymap.set('n', '<bs>cte', ':e ~/.tmux.conf<CR>', { desc = '[C]onfig: [T]mux: op[E]n' })
+keymap.set('n', '<bs>ctt', ':tabnew ~/.tmux.conf<CR>', { desc = '[C]onfig: [T]mux open in new [t]ab' })
+keymap.set('n', '<bs>ctv', ':vsp<CR> :e ~/.tmux.conf<CR>', { desc = '[C]onfig: [T]mux open in new [v]split' })
+keymap.set('n', '<bs>ctx', ':sp<CR> :e ~/.tmux.conf<CR>', { desc = '[C]onfig: [T]mux open in new [s]plit' })
+
+keymap.set('n', '<bs>cze', ':e ~/.zshrc<CR>', { desc = '[C]onfig: ZSH: op[E]n' })
+keymap.set('n', '<bs>czt', ':tabnew ~/.zshrc<CR>', { desc = '[C]onfig: ZSH open in new [t]ab' })
+keymap.set('n', '<bs>czv', ':vsp<CR> :e ~/.zshrc<CR>', { desc = '[C]onfig: ZSH open in new [v]split' })
+keymap.set('n', '<bs>czx', ':sp<CR> :e ~/.zshrc<CR>', { desc = '[C]onfig: ZSH open in new [s]plit' })
+
 -- clear search
 keymap.set('n', '<Esc>', '', { desc = 'Clear search highlight' })
 keymap.set('n', '<bs>/', ':nohl<CR>', { desc = 'Clear search highlight' })

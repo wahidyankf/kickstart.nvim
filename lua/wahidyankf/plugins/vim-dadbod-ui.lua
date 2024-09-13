@@ -15,7 +15,7 @@ return {
   init = function()
     -- Your DBUI configuration
     vim.g.db_ui_use_nerd_fonts = 1
-    vim.g.db_ui_save_location = '~/Dropbox/wkf-dbs/db_ui_queries'
+    vim.g.db_ui_save_location = '~/Dropbox/wkf-devbox/vim_dadbod_ui_config'
 
     vim.keymap.set('n', '<leader>bv', ':DBUIToggle<CR>', { desc = 'Toggle DB [V]iew' })
     vim.keymap.set('n', '<leader>bc', ':DBUIAddConnection<CR>', { desc = 'New DB [C]onnection' })

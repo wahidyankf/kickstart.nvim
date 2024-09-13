@@ -13,6 +13,10 @@ return { -- Useful plugin to show you pending keybinds.
       { '<bs>c_', hidden = true },
       { '<bs>cv', group = '[V]im' },
       { '<bs>cv_', hidden = true },
+      { '<bs>ct', group = '[T]mux' },
+      { '<bs>ct_', hidden = true },
+      { '<bs>cz', group = '[Z]sh' },
+      { '<bs>cz_', hidden = true },
 
       { '<bs>p', group = '[P]ackage Manager' },
       { '<bs>p_', hidden = true },
