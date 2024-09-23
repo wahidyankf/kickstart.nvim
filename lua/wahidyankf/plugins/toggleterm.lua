@@ -33,15 +33,45 @@ return {
       vim.keymap.set('n', '<C-t><C-b>', ':ToggleTerm direction=tab name=default-tab<CR>', { desc = 'Toggle terminal Ta[B]' })
       vim.keymap.set('n', '<bs>tb', ':ToggleTerm direction=tab name=default-tab<CR>', { desc = 'Toggle terminal Ta[B]' })
 
-      -- Table to store command history for each project
+      -- Table to store command history for each folder
       local command_history = {}
 
-      -- Function to get the current project root
-      local function get_project_root()
-        local current_file = vim.fn.expand('%:p')
-        local current_dir = vim.fn.fnamemodify(current_file, ':h')
-        return vim.fn.finddir('.git/..', current_dir .. ';')
+      -- Get the initial working directory
+      local initial_cwd = (function()
+        local argv = vim.v.argv
+        for i = #argv, 1, -1 do
+          if argv[i] ~= '-c' and argv[i]:sub(1, 1) ~= '+' then
+            return vim.fn.fnamemodify(argv[i], ':p:h')
+          end
+        end
+        return vim.fn.getcwd()
+      end)()
+
+      -- Function to save command history to a file
+      local function save_command_history()
+        local history_file = vim.fn.stdpath('data') .. '/toggleterm_history.json'
+        local file = io.open(history_file, 'w')
+        if file then
+          file:write(vim.fn.json_encode(command_history))
+          file:close()
+        end
       end
+
+      -- Function to load command history from a file
+      local function load_command_history()
+        local history_file = vim.fn.stdpath('data') .. '/toggleterm_history.json'
+        local file = io.open(history_file, 'r')
+        if file then
+          local content = file:read('*all')
+          file:close()
+          if content ~= "" then
+            command_history = vim.fn.json_decode(content)
+          end
+        end
+      end
+
+      -- Load command history when Neovim starts
+      load_command_history()
 
       -- Function to run command in terminal
       local function run_command_in_terminal(command)
@@ -52,9 +82,8 @@ return {
 
       -- Function to show Telescope prompt for command selection/input
       local function show_command_prompt()
-        local project_root = get_project_root()
-        if not command_history[project_root] then
-          command_history[project_root] = {}
+        if not command_history[initial_cwd] then
+          command_history[initial_cwd] = {}
         end
 
         local actions = require "telescope.actions"
@@ -63,37 +92,59 @@ return {
         local finders = require "telescope.finders"
         local conf = require("telescope.config").values
 
+        local manually_selected = false
+
         pickers.new({}, {
           prompt_title = "Run Terminal Command",
           finder = finders.new_table {
-            results = {"", unpack(command_history[project_root])},
+            results = command_history[initial_cwd],
           },
           sorter = conf.generic_sorter({}),
           attach_mappings = function(prompt_bufnr, map)
+            -- Track manual selection
+            map('i', '<C-n>', function()
+              actions.move_selection_next(prompt_bufnr)
+              manually_selected = true
+            end)
+            map('i', '<C-p>', function()
+              actions.move_selection_previous(prompt_bufnr)
+              manually_selected = true
+            end)
+            map('i', '<Down>', function()
+              actions.move_selection_next(prompt_bufnr)
+              manually_selected = true
+            end)
+            map('i', '<Up>', function()
+              actions.move_selection_previous(prompt_bufnr)
+              manually_selected = true
+            end)
+
             actions.select_default:replace(function()
-              actions.close(prompt_bufnr)
-              local selection = action_state.get_selected_entry()
               local cmd
-              if selection then
-                cmd = selection[1]
+              if manually_selected then
+                local selection = action_state.get_selected_entry()
+                cmd = selection and selection[1] or action_state.get_current_line()
               else
                 cmd = action_state.get_current_line()
               end
+              actions.close(prompt_bufnr)
               if cmd and cmd ~= "" then
                 run_command_in_terminal(cmd)
                 -- Remove the command if it already exists in the history
-                for i, v in ipairs(command_history[project_root]) do
+                for i, v in ipairs(command_history[initial_cwd]) do
                   if v == cmd then
-                    table.remove(command_history[project_root], i)
+                    table.remove(command_history[initial_cwd], i)
                     break
                   end
                 end
                 -- Add the command to the beginning of the history
-                table.insert(command_history[project_root], 1, cmd)
+                table.insert(command_history[initial_cwd], 1, cmd)
                 -- Limit the history to a certain number (e.g., 50) to prevent it from growing indefinitely
-                if #command_history[project_root] > 50 then
-                  table.remove(command_history[project_root])
+                if #command_history[initial_cwd] > 50 then
+                  table.remove(command_history[initial_cwd])
                 end
+                -- Save the updated command history
+                save_command_history()
               end
             end)
             return true
