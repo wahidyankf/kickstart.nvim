@@ -2,6 +2,10 @@ return {
   {
     'akinsho/toggleterm.nvim',
     version = '*',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+      'nvim-lua/plenary.nvim',
+    },
     config = function()
       require('toggleterm').setup {
         direction = 'horizontal', -- direction = 'vertical' | 'horizontal' | 'tab' | 'float',
@@ -31,7 +35,6 @@ return {
 
       -- Table to store command history for each project
       local command_history = {}
-      local history_index = 0
 
       -- Function to get the current project root
       local function get_project_root()
@@ -40,80 +43,56 @@ return {
         return vim.fn.finddir('.git/..', current_dir .. ';')
       end
 
-      -- Function to create a centered input window
-      local function centered_input(prompt, callback)
-        local width = 60
-        local height = 1
-        local buf = vim.api.nvim_create_buf(false, true)
-        local ui = vim.api.nvim_list_uis()[1]
-        local opts = {
-          relative = 'editor',
-          width = width,
-          height = height,
-          col = (ui.width - width) / 2,
-          row = (ui.height - height) / 2,
-          style = 'minimal',
-          border = 'rounded',
-        }
-        local win = vim.api.nvim_open_win(buf, true, opts)
-        vim.api.nvim_buf_set_option(buf, 'buftype', 'prompt')
-        vim.fn.prompt_setprompt(buf, prompt)
-        vim.cmd('startinsert')
+      -- Function to run command in terminal
+      local function run_command_in_terminal(command)
+        if command and command ~= "" then
+          require("toggleterm").exec(command)
+        end
+      end
 
+      -- Function to show Telescope prompt for command selection/input
+      local function show_command_prompt()
         local project_root = get_project_root()
         if not command_history[project_root] then
           command_history[project_root] = {}
         end
-        history_index = #command_history[project_root] + 1
 
-        -- Handle Enter key press
-        vim.keymap.set('i', '<CR>', function()
-          local input = vim.fn.getline('.'):sub(#prompt + 1)
-          vim.api.nvim_win_close(win, true)
-          if input ~= "" then
-            table.insert(command_history[project_root], input)
-          end
-          vim.schedule(function()
-            callback(input)
-          end)
-        end, { buffer = buf, nowait = true })
+        local actions = require "telescope.actions"
+        local action_state = require "telescope.actions.state"
+        local pickers = require "telescope.pickers"
+        local finders = require "telescope.finders"
+        local conf = require("telescope.config").values
 
-        -- Handle Ctrl-K (previous command)
-        vim.keymap.set('i', '<C-k>', function()
-          if history_index > 1 then
-            history_index = history_index - 1
-            local prev_command = command_history[project_root][history_index]
-            vim.api.nvim_buf_set_lines(buf, 0, -1, false, {prompt .. prev_command})
-            vim.api.nvim_win_set_cursor(win, {1, #prompt + #prev_command + 1})
-          end
-        end, { buffer = buf, nowait = true })
-
-        -- Handle Ctrl-J (next command)
-        vim.keymap.set('i', '<C-j>', function()
-          if history_index < #command_history[project_root] then
-            history_index = history_index + 1
-            local next_command = command_history[project_root][history_index]
-            vim.api.nvim_buf_set_lines(buf, 0, -1, false, {prompt .. next_command})
-            vim.api.nvim_win_set_cursor(win, {1, #prompt + #next_command + 1})
-          elseif history_index == #command_history[project_root] then
-            history_index = history_index + 1
-            vim.api.nvim_buf_set_lines(buf, 0, -1, false, {prompt})
-            vim.api.nvim_win_set_cursor(win, {1, #prompt + 1})
-          end
-        end, { buffer = buf, nowait = true })
+        pickers.new({}, {
+          prompt_title = "Run Terminal Command",
+          finder = finders.new_table {
+            results = {"", unpack(command_history[project_root])},
+          },
+          sorter = conf.generic_sorter({}),
+          attach_mappings = function(prompt_bufnr, map)
+            actions.select_default:replace(function()
+              actions.close(prompt_bufnr)
+              local selection = action_state.get_selected_entry()
+              local cmd
+              if selection then
+                cmd = selection[1]
+              else
+                cmd = action_state.get_current_line()
+              end
+              if cmd and cmd ~= "" then
+                run_command_in_terminal(cmd)
+                if not vim.tbl_contains(command_history[project_root], cmd) then
+                  table.insert(command_history[project_root], 1, cmd)
+                end
+              end
+            end)
+            return true
+          end,
+        }):find()
       end
 
-      -- New function to run command in terminal with centered input
-      local function run_command_in_terminal()
-        centered_input("Enter command: ", function(input)
-          if input and input ~= "" then
-            require("toggleterm").exec(input)
-          end
-        end)
-      end
-
-      -- New command to run input in terminal
-      vim.api.nvim_create_user_command('TermRun', run_command_in_terminal, {})
+      -- New command to show Telescope prompt
+      vim.api.nvim_create_user_command('TermRun', show_command_prompt, {})
 
       -- New keymaps to trigger the command
       vim.keymap.set('n', '<C-t><C-r>', ':TermRun<CR>', { desc = 'Run command in [T]erminal' })
