@@ -29,6 +29,17 @@ return {
       vim.keymap.set('n', '<C-t><C-b>', ':ToggleTerm direction=tab name=default-tab<CR>', { desc = 'Toggle terminal Ta[B]' })
       vim.keymap.set('n', '<bs>tb', ':ToggleTerm direction=tab name=default-tab<CR>', { desc = 'Toggle terminal Ta[B]' })
 
+      -- Table to store command history for each project
+      local command_history = {}
+      local history_index = 0
+
+      -- Function to get the current project root
+      local function get_project_root()
+        local current_file = vim.fn.expand('%:p')
+        local current_dir = vim.fn.fnamemodify(current_file, ':h')
+        return vim.fn.finddir('.git/..', current_dir .. ';')
+      end
+
       -- Function to create a centered input window
       local function centered_input(prompt, callback)
         local width = 60
@@ -49,13 +60,46 @@ return {
         vim.fn.prompt_setprompt(buf, prompt)
         vim.cmd('startinsert')
 
+        local project_root = get_project_root()
+        if not command_history[project_root] then
+          command_history[project_root] = {}
+        end
+        history_index = #command_history[project_root] + 1
+
         -- Handle Enter key press
         vim.keymap.set('i', '<CR>', function()
-          local input = vim.fn.getline('.')
+          local input = vim.fn.getline('.'):sub(#prompt + 1)
           vim.api.nvim_win_close(win, true)
+          if input ~= "" then
+            table.insert(command_history[project_root], input)
+          end
           vim.schedule(function()
-            callback(input:sub(#prompt + 1)) -- Remove prompt from input
+            callback(input)
           end)
+        end, { buffer = buf, nowait = true })
+
+        -- Handle Ctrl-K (previous command)
+        vim.keymap.set('i', '<C-k>', function()
+          if history_index > 1 then
+            history_index = history_index - 1
+            local prev_command = command_history[project_root][history_index]
+            vim.api.nvim_buf_set_lines(buf, 0, -1, false, {prompt .. prev_command})
+            vim.api.nvim_win_set_cursor(win, {1, #prompt + #prev_command + 1})
+          end
+        end, { buffer = buf, nowait = true })
+
+        -- Handle Ctrl-J (next command)
+        vim.keymap.set('i', '<C-j>', function()
+          if history_index < #command_history[project_root] then
+            history_index = history_index + 1
+            local next_command = command_history[project_root][history_index]
+            vim.api.nvim_buf_set_lines(buf, 0, -1, false, {prompt .. next_command})
+            vim.api.nvim_win_set_cursor(win, {1, #prompt + #next_command + 1})
+          elseif history_index == #command_history[project_root] then
+            history_index = history_index + 1
+            vim.api.nvim_buf_set_lines(buf, 0, -1, false, {prompt})
+            vim.api.nvim_win_set_cursor(win, {1, #prompt + 1})
+          end
         end, { buffer = buf, nowait = true })
       end
 
