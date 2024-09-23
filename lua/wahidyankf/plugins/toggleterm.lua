@@ -81,8 +81,18 @@ return {
               end
               if cmd and cmd ~= "" then
                 run_command_in_terminal(cmd)
-                if not vim.tbl_contains(command_history[project_root], cmd) then
-                  table.insert(command_history[project_root], 1, cmd)
+                -- Remove the command if it already exists in the history
+                for i, v in ipairs(command_history[project_root]) do
+                  if v == cmd then
+                    table.remove(command_history[project_root], i)
+                    break
+                  end
+                end
+                -- Add the command to the beginning of the history
+                table.insert(command_history[project_root], 1, cmd)
+                -- Limit the history to a certain number (e.g., 50) to prevent it from growing indefinitely
+                if #command_history[project_root] > 50 then
+                  table.remove(command_history[project_root])
                 end
               end
             end)
