@@ -158,6 +158,21 @@ return {
       -- New keymaps to trigger the command
       vim.keymap.set('n', '<C-t><C-r>', ':TermRun<CR>', { desc = 'Run command in [T]erminal' })
       vim.keymap.set('n', '<bs>tr', ':TermRun<CR>', { desc = 'Run command in [T]erminal' })
+
+      -- Function to clear command history for the current project
+      local function clear_project_history()
+        if command_history[initial_cwd] then
+          command_history[initial_cwd] = {}
+          save_command_history()
+          print("Command history cleared for the current project.")
+        else
+          print("No command history found for the current project.")
+        end
+      end
+
+      -- New command to clear project history
+      vim.api.nvim_create_user_command('CMDClearProjectHistory', clear_project_history, {})
+
     end,
   },
 }
