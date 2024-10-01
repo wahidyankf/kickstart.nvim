@@ -54,15 +54,15 @@ return {
       }
 
       vim.keymap.set('n', '<C-t><C-t>', ':ToggleTerm<CR>', { desc = '[T]oggle terminal defaul[T]' })
-      vim.keymap.set('n', '<bs>tt', ':ToggleTerm<CR>', { desc = '[T]oggle terminal defaul[T]' })
+      vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>', { desc = '[T]oggle terminal defaul[T]' })
       vim.keymap.set('n', '<C-t><C-f>', ':ToggleTerm direction=float name=default-float<CR>', { desc = 'Toggle terminal [F]loat' })
-      vim.keymap.set('n', '<bs>tf', ':ToggleTerm direction=float name=default-float<CR>', { desc = 'Toggle terminal [F]loat' })
+      vim.keymap.set('n', '<leader>tf', ':ToggleTerm direction=float name=default-float<CR>', { desc = 'Toggle terminal [F]loat' })
       vim.keymap.set('n', '<C-t><C-v>', ':ToggleTerm direction=vertical name=default-vertical<CR>', { desc = 'Toggle terminal [V]ertical' })
-      vim.keymap.set('n', '<bs>tv', ':ToggleTerm direction=vertical name=default-vertical<CR>', { desc = 'Toggle terminal [V]ertical' })
+      vim.keymap.set('n', '<leader>tv', ':ToggleTerm direction=vertical name=default-vertical<CR>', { desc = 'Toggle terminal [V]ertical' })
       vim.keymap.set('n', '<C-t><C-x>', ':ToggleTerm direction=horizontal name=default-horizontal<CR>', { desc = 'Toggle terminal horizontal ([X])' })
-      vim.keymap.set('n', '<bs>tx', ':ToggleTerm direction=horizontal name=default-horizontal<CR>', { desc = 'Toggle terminal horizontal ([X])' })
+      vim.keymap.set('n', '<leader>tx', ':ToggleTerm direction=horizontal name=default-horizontal<CR>', { desc = 'Toggle terminal horizontal ([X])' })
       vim.keymap.set('n', '<C-t><C-b>', ':ToggleTerm direction=tab name=default-tab<CR>', { desc = 'Toggle terminal Ta[B]' })
-      vim.keymap.set('n', '<bs>tb', ':ToggleTerm direction=tab name=default-tab<CR>', { desc = 'Toggle terminal Ta[B]' })
+      vim.keymap.set('n', '<leader>tb', ':ToggleTerm direction=tab name=default-tab<CR>', { desc = 'Toggle terminal Ta[B]' })
       
       -- Table to store command history for each folder
       local command_history = {}
@@ -188,7 +188,7 @@ return {
 
       -- New keymaps to trigger the command
       vim.keymap.set('n', '<C-t><C-r>', ':TermRun<CR>', { desc = 'Run command in [T]erminal' })
-      vim.keymap.set('n', '<bs>tr', ':TermRun<CR>', { desc = 'Run command in [T]erminal' })
+      vim.keymap.set('n', '<leader>tr', ':TermRun<CR>', { desc = 'Run command in [T]erminal' })
 
       -- Function to clear command history for the current project
       local function clear_project_history()
@@ -205,10 +205,10 @@ return {
       vim.api.nvim_create_user_command('CMDClearProjectHistory', clear_project_history, {})
 
       -- Update keymaps for increasing and decreasing height
-      vim.keymap.set("n", "<bs>tsk", function() _G.increase_toggleterm_height(5) end, { noremap = true, silent = true, desc = "Increase terminal height" })
-      vim.keymap.set("n", "<bs>tsj", function() _G.decrease_toggleterm_height(5) end, { noremap = true, silent = true, desc = "Decrease terminal height" })
-      vim.keymap.set("n", "<bs>tsK", function() _G.increase_toggleterm_height(10) end, { noremap = true, silent = true, desc = "Increase terminal height (large)" })
-      vim.keymap.set("n", "<bs>tsJ", function() _G.decrease_toggleterm_height(10) end, { noremap = true, silent = true, desc = "Decrease terminal height (large)" })
+      vim.keymap.set("n", "<leader>tsk", function() _G.increase_toggleterm_height(5) end, { noremap = true, silent = true, desc = "Increase terminal height" })
+      vim.keymap.set("n", "<leader>tsj", function() _G.decrease_toggleterm_height(5) end, { noremap = true, silent = true, desc = "Decrease terminal height" })
+      vim.keymap.set("n", "<leader>tsK", function() _G.increase_toggleterm_height(10) end, { noremap = true, silent = true, desc = "Increase terminal height (large)" })
+      vim.keymap.set("n", "<leader>tsJ", function() _G.decrease_toggleterm_height(10) end, { noremap = true, silent = true, desc = "Decrease terminal height (large)" })
 
     end,
   },

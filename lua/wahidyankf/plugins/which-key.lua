@@ -21,8 +21,8 @@ return { -- Useful plugin to show you pending keybinds.
       { '<bs>p', group = '[P]ackage Manager' },
       { '<bs>p_', hidden = true },
 
-      { '<bs>t', group = '[T]erminal' },
-      { '<bs>t_', hidden = true },
+      { '<leader>t', group = '[T]erminal' },
+      { '<leader>t_', hidden = true },
 
       { '<bs>w', group = '[W]rap' },
       { '<bs>w_', hidden = true },
@@ -84,8 +84,8 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>ss', group = '[S]ize' },
       { '<leader>ss_', hidden = true },
 
-      { '<leader>t', group = '[T]ab' },
-      { '<leader>t_', hidden = true },
+      { '<bs>t', group = '[T]ab' },
+      { '<bs>t_', hidden = true },
 
       { '<leader>u', group = 'B[U]ffer' },
       { '<leader>u_', hidden = true },
