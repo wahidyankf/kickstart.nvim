@@ -15,18 +15,34 @@ return {
       -- Function to adjust terminal height
       local function adjust_terminal_height(delta)
         current_height = math.max(5, current_height + delta)  -- Ensure minimum height of 5
-        toggleterm.setup({ size = current_height })
+        
+        local current_win = vim.api.nvim_get_current_win()
+        local current_buf = vim.api.nvim_get_current_buf()
+        
         for _, term in pairs(require("toggleterm.terminal").get_all()) do
           if term.direction == "horizontal" then
-            term:toggle()
-            term:toggle()
+            -- Only resize if the terminal is open
+            if term.window and vim.api.nvim_win_is_valid(term.window) then
+              vim.api.nvim_win_set_height(term.window, current_height)
+            end
+          end
+        end
+        
+        -- Update the global configuration
+        toggleterm.setup({ size = current_height })
+        
+        -- Restore focus to the original window and buffer
+        if vim.api.nvim_win_is_valid(current_win) then
+          vim.api.nvim_set_current_win(current_win)
+          if vim.api.nvim_buf_is_valid(current_buf) then
+            vim.api.nvim_win_set_buf(current_win, current_buf)
           end
         end
       end
 
       -- Make these functions globally accessible
-      _G.increase_toggleterm_height = function() adjust_terminal_height(5) end
-      _G.decrease_toggleterm_height = function() adjust_terminal_height(-5) end
+      _G.increase_toggleterm_height = function(amount) adjust_terminal_height(amount or 5) end
+      _G.decrease_toggleterm_height = function(amount) adjust_terminal_height(-(amount or 5)) end
 
       toggleterm.setup {
         direction = 'horizontal',
@@ -189,8 +205,10 @@ return {
       vim.api.nvim_create_user_command('CMDClearProjectHistory', clear_project_history, {})
 
       -- Update keymaps for increasing and decreasing height
-      vim.keymap.set("n", "<bs>tsk", _G.increase_toggleterm_height, { noremap = true, silent = true, desc = "Increase terminal height" })
-      vim.keymap.set("n", "<bs>tsj", _G.decrease_toggleterm_height, { noremap = true, silent = true, desc = "Decrease terminal height" })
+      vim.keymap.set("n", "<bs>tsk", function() _G.increase_toggleterm_height(5) end, { noremap = true, silent = true, desc = "Increase terminal height" })
+      vim.keymap.set("n", "<bs>tsj", function() _G.decrease_toggleterm_height(5) end, { noremap = true, silent = true, desc = "Decrease terminal height" })
+      vim.keymap.set("n", "<bs>tsK", function() _G.increase_toggleterm_height(10) end, { noremap = true, silent = true, desc = "Increase terminal height (large)" })
+      vim.keymap.set("n", "<bs>tsJ", function() _G.decrease_toggleterm_height(10) end, { noremap = true, silent = true, desc = "Decrease terminal height (large)" })
 
     end,
   },
