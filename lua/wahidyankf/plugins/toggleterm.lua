@@ -7,19 +7,34 @@ return {
       'nvim-lua/plenary.nvim',
     },
     config = function()
-      require('toggleterm').setup {
-        direction = 'horizontal', -- direction = 'vertical' | 'horizontal' | 'tab' | 'float',
-        open_mapping = { [[<C-t><C-t>]] },
-        persist_mode = true, -- if set to true (default) the previous terminal mode will be remembered
-        persist_size = true,
-        start_in_insert = true,
-        size = function(term)
-          if term.direction == 'horizontal' then
-            return 15
-          elseif term.direction == 'vertical' then
-            return vim.o.columns * 0.4
+      local toggleterm = require('toggleterm')
+
+      -- Initialize a variable to store the current height
+      local current_height = 15
+
+      -- Function to adjust terminal height
+      local function adjust_terminal_height(delta)
+        current_height = math.max(5, current_height + delta)  -- Ensure minimum height of 5
+        toggleterm.setup({ size = current_height })
+        for _, term in pairs(require("toggleterm.terminal").get_all()) do
+          if term.direction == "horizontal" then
+            term:toggle()
+            term:toggle()
           end
-        end,
+        end
+      end
+
+      -- Make these functions globally accessible
+      _G.increase_toggleterm_height = function() adjust_terminal_height(5) end
+      _G.decrease_toggleterm_height = function() adjust_terminal_height(-5) end
+
+      toggleterm.setup {
+        direction = 'horizontal',
+        size = current_height,
+        open_mapping = [[<C-t><C-t>]],
+        persist_mode = true,
+        persist_size = false,
+        start_in_insert = true,
       }
 
       vim.keymap.set('n', '<C-t><C-t>', ':ToggleTerm<CR>', { desc = '[T]oggle terminal defaul[T]' })
@@ -32,7 +47,7 @@ return {
       vim.keymap.set('n', '<bs>tx', ':ToggleTerm direction=horizontal name=default-horizontal<CR>', { desc = 'Toggle terminal horizontal ([X])' })
       vim.keymap.set('n', '<C-t><C-b>', ':ToggleTerm direction=tab name=default-tab<CR>', { desc = 'Toggle terminal Ta[B]' })
       vim.keymap.set('n', '<bs>tb', ':ToggleTerm direction=tab name=default-tab<CR>', { desc = 'Toggle terminal Ta[B]' })
-
+      
       -- Table to store command history for each folder
       local command_history = {}
 
@@ -76,7 +91,7 @@ return {
       -- Function to run command in terminal
       local function run_command_in_terminal(command)
         if command and command ~= "" then
-          require("toggleterm").exec(command)
+          toggleterm.exec(command, 1, current_height, nil, 'horizontal')
         end
       end
 
@@ -172,6 +187,10 @@ return {
 
       -- New command to clear project history
       vim.api.nvim_create_user_command('CMDClearProjectHistory', clear_project_history, {})
+
+      -- Update keymaps for increasing and decreasing height
+      vim.keymap.set("n", "<bs>tsk", _G.increase_toggleterm_height, { noremap = true, silent = true, desc = "Increase terminal height" })
+      vim.keymap.set("n", "<bs>tsj", _G.decrease_toggleterm_height, { noremap = true, silent = true, desc = "Decrease terminal height" })
 
     end,
   },
