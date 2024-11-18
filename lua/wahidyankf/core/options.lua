@@ -1,88 +1,111 @@
--- [[ Setting options ]]
--- See `:help vim.opt`
---  For more options, you can see `:help option-list`
+--[[
+  options.lua
+  
+  This module configures Neovim's core settings and behaviors. Options are organized
+  into logical groups for better maintainability.
+
+  Option Groups:
+  1. User Interface
+     - Line numbers
+     - Colors and visual elements
+     - Window splits
+  2. Editing Behavior
+     - Indentation
+     - Line wrapping
+     - Mouse support
+  3. System Integration
+     - Clipboard
+     - File handling
+  4. Search and Replace
+     - Case sensitivity
+     - Live preview
+  5. Performance
+     - Update times
+     - Timeouts
+  6. Code Folding
+     - TreeSitter integration
+     - Default levels
+
+  For more information, see:
+  - :help vim.opt
+  - :help option-list
+  - :help option-summary
+--]]
 
 local opt = vim.opt
 
+--[[ File Explorer Configuration ]]---------------------------------------------
+-- Set netrw list style to tree view
 vim.cmd 'let g:netrw_liststyle = 3'
 
--- line numbers
-opt.relativenumber = true
-opt.number = true
+--[[ User Interface ]]--------------------------------------------------------
 
--- tabs & indentation
-opt.tabstop = 2
-opt.shiftwidth = 2
-opt.expandtab = true
-opt.autoindent = true
+-- Line Numbers
+opt.number = true           -- Show line numbers
+opt.relativenumber = true   -- Show relative line numbers
 
--- turn on termguicolors for nightfly colorscheme to work
--- (have to use iterm2 or any other true color terminal)
-opt.termguicolors = true
-opt.background = 'dark' -- colorschemes that can be light or dark will be made dark
-opt.signcolumn = 'yes' -- show sign column so that text doesn't shift
+-- Colors and Visual Elements
+opt.termguicolors = true   -- Enable 24-bit RGB color in the TUI
+opt.background = 'dark'     -- Default to dark background
+opt.signcolumn = 'yes'     -- Always show the signcolumn
+opt.cursorline = true      -- Highlight the current line
+opt.showmode = false       -- Don't show mode in command line (statusline handles this)
+opt.list = true           -- Show some invisible characters
+opt.listchars = {         -- Define which invisible characters to show
+  tab = '» ',            -- Tab characters
+  trail = '·',           -- Trailing spaces
+  nbsp = '␣'            -- Non-breaking spaces
+}
 
--- line wrapping
-opt.wrap = false
+-- Window Splits
+opt.splitright = true      -- Place new window to the right of current one
+opt.splitbelow = true      -- Place new window below the current one
+opt.scrolloff = 10         -- Keep 10 lines visible above/below cursor
 
--- Enable mouse mode, can be useful for resizing splits for example!
-opt.mouse = 'a'
+--[[ Editing Behavior ]]-----------------------------------------------------
 
--- Don't show the mode, since it's already in the status line
-opt.showmode = false
+-- Indentation
+opt.tabstop = 2           -- Number of spaces a tab counts for
+opt.shiftwidth = 2        -- Size of an indent
+opt.expandtab = true      -- Use spaces instead of tabs
+opt.autoindent = true     -- Copy indent from current line when starting new line
+opt.breakindent = true    -- Maintain indent when wrapping lines
 
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-opt.clipboard = 'unnamedplus'
+-- Line Wrapping
+opt.wrap = false          -- Don't wrap lines by default
 
--- Enable break indent
-opt.breakindent = true
+-- Mouse
+opt.mouse = 'a'           -- Enable mouse for all modes
 
--- Save undo history
-opt.undofile = true
+--[[ System Integration ]]--------------------------------------------------
 
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-opt.ignorecase = true
-opt.smartcase = true
+-- Clipboard
+opt.clipboard = 'unnamedplus'  -- Use system clipboard
 
--- Keep signcolumn on by default
-opt.signcolumn = 'yes'
+-- File Handling
+opt.swapfile = false      -- Disable swap files
+opt.undofile = true       -- Save undo history to file
 
--- Decrease update time
-opt.updatetime = 250
+--[[ Search and Replace ]]------------------------------------------------
 
--- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-opt.timeoutlen = 300
+-- Search Behavior
+opt.ignorecase = true     -- Ignore case in search patterns
+opt.smartcase = true      -- Override ignorecase if pattern contains upper case
+opt.hlsearch = true       -- Highlight search matches
 
--- Configure how new splits should be opened
-opt.splitright = true
-opt.splitbelow = true
+-- Replace Preview
+opt.inccommand = 'split'  -- Show preview of substitutions as you type
 
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
-opt.list = true
-opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+--[[ Performance ]]------------------------------------------------------
 
--- Preview substitutions live, as you type!
-opt.inccommand = 'split'
+-- Timings
+opt.updatetime = 250      -- Faster completion and other features
+opt.timeoutlen = 300      -- Time to wait for mapped sequence to complete
 
--- Show which line your cursor is on
-opt.cursorline = true
+--[[ Code Folding ]]----------------------------------------------------
 
--- Minimal number of screen lines to keep above and below the cursor.
-opt.scrolloff = 10
-
--- Set highlight on search, but clear on pressing <Esc> in normal mode
-opt.hlsearch = true
-
--- turn off swapfile
-opt.swapfile = false
-
--- folding
-opt.foldmethod = 'expr'
-opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-opt.foldlevel = 99
-opt.foldlevelstart = 2
+-- TreeSitter Integration
+opt.foldmethod = 'expr'                              -- Use TreeSitter for folding
+opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'    -- TreeSitter folding expression
+opt.foldlevel = 99                                   -- High default fold level (less folding)
+opt.foldlevelstart = 2                               -- Start with some folds closed
