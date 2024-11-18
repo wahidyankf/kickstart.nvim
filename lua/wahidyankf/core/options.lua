@@ -69,7 +69,7 @@ opt.tabstop = 2           -- Number of spaces a tab counts for
 opt.shiftwidth = 2        -- Size of an indent
 opt.expandtab = true      -- Use spaces instead of tabs
 opt.autoindent = true     -- Copy indent from current line when starting new line
-opt.breakindent = true    -- Maintain indent when wrapping lines
+opt.breakindent = false   -- Keep original indent when wrapping lines
 
 -- Line Wrapping
 opt.wrap = false          -- Don't wrap lines by default
