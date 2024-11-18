@@ -81,6 +81,67 @@ The configuration is organized into modules under the `lua/wahidyankf/` director
 
 To add or modify plugins, edit the appropriate files in the `plugins/` directory.
 
+## Plugin List
+
+This configuration includes a carefully selected set of plugins to enhance the Neovim experience:
+
+### Core Functionality
+
+- **lazy.nvim**: Modern plugin manager with lazy-loading capabilities
+- **which-key.nvim**: Displays available keybindings in popup
+- **nvim-treesitter**: Advanced syntax highlighting and code understanding
+- **telescope.nvim**: Fuzzy finder for files, buffers, and more
+- **nvim-lspconfig**: Language Server Protocol (LSP) configuration
+- **nvim-cmp**: Completion engine with multiple sources
+
+### Editor Enhancement
+
+- **alpha-nvim**: Customizable greeter/dashboard
+- **nvim-tree**: File explorer with git integration
+- **gitsigns.nvim**: Git decorations and hunks management
+- **indent-blankline**: Indentation guides
+- **todo-comments**: Highlight and search TODO comments
+- **trouble.nvim**: Pretty diagnostics list
+- **conform.nvim**: Code formatting engine
+- **nvim-autopairs**: Automatic bracket pairing
+- **nvim-surround**: Surround selections with brackets/quotes
+- **autoclose.nvim**: Auto-close brackets and quotes
+- **wrapping.nvim**: Smart text wrapping utilities
+
+### Development Tools
+
+- **copilot.vim**: GitHub Copilot integration
+- **copilot-chat.nvim**: GitHub Copilot chat interface
+- **nvim-dap**: Debug Adapter Protocol client
+- **vim-fugitive**: Git operations within Neovim
+- **lazygit.nvim**: LazyGit integration
+- **vim-dadbod-ui**: Database client interface
+- **conjure**: Interactive development for Lisp-like languages
+- **nvim-paredit**: Structural editing for Lisp
+- **ionide-vim**: F# and .NET development
+
+### UI and Navigation
+
+- **oil.nvim**: File navigation in buffer
+- **harpoon**: Quick file navigation
+- **undotree**: Visual navigation of undo history
+- **vim-tmux-navigator**: Seamless Tmux/Neovim navigation
+- **vim-maximizer**: Window maximization management
+- **toggleterm**: Integrated terminal management
+- **dressing.nvim**: UI improvements for inputs
+- **mini.nvim**: Collection of minimal UI improvements
+
+### Session Management
+
+- **auto-session**: Automatic session management
+- **session-lens**: Telescope integration for sessions
+
+### Color Schemes
+
+- Various color schemes for personalization
+
+Each plugin is configured in its own file under the `lua/wahidyankf/plugins/` directory for better organization and maintainability.
+
 ## Acknowledgments
 
 This configuration is built upon [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim), an excellent starting point for Neovim configuration. While maintaining its core principles, this version has been reorganized into a more modular structure for better maintainability.
