@@ -1,4 +1,4 @@
-# wkf-devbox Neovim Configuration
+# Wahidyankf's Neovim Configuration
 
 ## Introduction
 
